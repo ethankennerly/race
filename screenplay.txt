@@ -1,0 +1,36 @@
+APARTMENT, OAKLAND, CALIFORNIA, 6PM, SUNDAY, NOVEMBER 1, 2015
+
+Jennifer Russ sits in front of a computer.
+
+She clicks a link to:
+
+	http://finegamedesign.com/lane-switcher
+
+A page opens with a Unity window in portrait aspect ratio (2:3).
+
+Loading bar.  After about 10 seconds it completes.
+
+START SCREEN
+
+Road with THREE LANES.  Alternating lane marker and empty texture.
+
+99 blue race cars.  A blue number on the back of each one in a white circle.
+
+		BILLBOARD
+	LANE SWITCHER
+
+	Dodge cars to win the race.
+
+	Press LEFT and RIGHT arrow keys to switch lanes.
+
+	Press RIGHT to start the race.
+
+At bottom of screen in left lane is a pink race car.  Number 100 on the back in dark purple.
+
+Jennifer presses LEFT.  Nothing happens.
+
+Jennifer presses RIGHT.  The pink car moves into the center lane and accelerates.
+
+The other cars also accelerate.
+
+

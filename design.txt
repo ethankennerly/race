@@ -1,0 +1,42 @@
+TODO
+	See straight race track with 3 lanes.
+	See a car.
+	Press left/right to steer.
+	Accelerate.
+	Cross finish line:  Review position.
+	10 other cars move at constant acceleration curve.
+	Tuned so number of collisions determines final position.
+	Start screen.  Read goal and instruction.  Press right to start.
+	After race.  Restart.
+	Collide.  Slow down.  Reaccelerate.
+	Set length of race:  See finish line.
+	See finishing position on each car.
+	Hear collision sound.
+	See track hills.
+	Shuffle track hills.
+	See track mesh curve left and right.
+	Win race.  Next race with more traffic that drives faster.
+	First race:  10 cars.
+	Win race.  Upgrade car.
+	Read score by average speed.
+	Read score by time.
+	See scenery.
+	See building facade.
+
+REFERENCE GAMES
+	Subway Surfers
+	Despicable Me:  Minion Rush
+	JavaScript Racer
+	Outrun
+	Pole Position
+
+NAME BANK
+	Lane Switcher
+	Auto Race
+	Tiny Race
+	Reaction Racer
+	Traffic Race
+	Rush Hour
+	Autobahn Race
+	Freeway Race
+	Streets of San Francisco

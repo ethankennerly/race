@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		steering.isInputLeft = Input.GetKeyDown(KeyCode.LeftArrow);
 		steering.isInputRight = Input.GetKeyDown(KeyCode.RightArrow);
-		steering.Update(Time.deltaTime);
+		steering.Update(Time.deltaTime, true);
 		Vector3 position = transform.position;
 		position.x = steering.x;
 		transform.position = position;

@@ -1,8 +1,9 @@
+FEATURES
+	See road, pink and blue blocks.
+
 TODO
-	See straight race track with 3 lanes.
-	See a car.
-	Press left/right to steer.
-	Accelerate.
+	Press left/right to steer.  Camera follows player.
+	Accelerate automatically.  See road move by.  
 	10 other cars move at constant acceleration curve.
 	Cross finish line:  Review position.
 	Publish finegamedesign.com/road-racer
@@ -16,6 +17,7 @@ TODO
 	Hear collision sound.
 	Win race.  Next race with more traffic that drive faster:  20, 30, 40.
 	Interpolate number of drivers based on accuracy.
+	Unit test models with tools.  http://www.tallior.com/introduction-unity-test-tools/
 	Fog.
 	See track hills.
 	Shuffle track hills.
@@ -24,6 +26,8 @@ TODO
 	Rhythm Racer: Intercept acceleration to intercept next car on the beat of a song.
 	Change lane:  Hear note.
 	Pass car:  Hear note.
+	See straight race track with 3 lanes.
+	See a car.
 	Jitter acceleration of other cars, yet arrive on schedule.
 	See sky clouds parallax around curves.
 	First race:  10 cars.
@@ -37,6 +41,7 @@ TODO
 	See scenery.
 	See building facade.
 	Curve terrain, like in Subway Surfers.
+	Explore coroutine.  http://answers.unity3d.com/questions/573234/moving-an-object-with-one-key-press.html
 
 REFERENCE GAMES
 	Subway Surfers
@@ -44,6 +49,8 @@ REFERENCE GAMES
 	JavaScript Racer
 	Outrun
 	Pole Position
+	Audio Surf
+	Guitar Hero
 
 NAME BANK
 	Road Racer

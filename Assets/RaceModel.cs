@@ -6,7 +6,9 @@ public class RaceModel {
 	public SpeedModel speed = new SpeedModel();
 	public SteeringModel steering = new SteeringModel();
 	public SpeedModel[] competitors;
-	public int competitorCount = 10;  
+	public int competitorCount = 	20;
+					// 100;
+					// 10;  
 					// 1;
 					// 2;
 					// 0;
@@ -23,13 +25,17 @@ public class RaceModel {
 	public void Start () {
 		competitors = new SpeedModel[competitorCount];
 		lanes = new float[competitorCount];
+		float idealPerCompetitor = 20.0f;  // 100.0f;
+		idealPerCompetitor /= ((float) competitorCount);
+		float targetPerCompetitor = 10.0f;
+		targetPerCompetitor /= ((float) competitorCount);
 		for (int c = 0; c < competitors.Length; c++) {
 			competitors[c] = new SpeedModel();
 			SpeedModel competitor = competitors[c];
 			float cf = (float) c;
-			competitor.idealSpeed = 5.0f + 10.0f * cf;
-			competitor.targetSpeed = 5.0f + 1.0f * cf;
-			competitor.z = 1.0f + cf;
+			competitor.idealSpeed = 5.0f + idealPerCompetitor * cf;
+			competitor.targetSpeed = 5.0f + targetPerCompetitor * cf;
+			competitor.z = 5.0f + cf;
 			lanes[c] = Mathf.Floor(Random.value * 3.0f) - 1.0f;
 		}
 	}

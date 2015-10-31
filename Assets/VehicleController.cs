@@ -15,7 +15,7 @@ public class VehicleController : MonoBehaviour {
 			competitors[c] = (GameObject) Instantiate(
 				competitorPrefab, position, Quaternion.identity);
 			competitors[c].SetActive(true);
-			Debug.Log("VehicleController.Start: " + c + " position " + competitors[c].transform.position);
+			// Debug.Log("VehicleController.Start: " + c + " position " + competitors[c].transform.position);
 		}
 	}
 

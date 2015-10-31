@@ -22,9 +22,6 @@ public class SteeringModel {
 	
 	}
 	
-	/**
-	 * @param	isUpdateCameraX		Blend to follow position by setting static variable cameraX.
-	 */
 	public float Update (float deltaTime) {
 		if (isInputLeft && isInputRight) {
 		}

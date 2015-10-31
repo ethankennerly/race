@@ -3,14 +3,18 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-	// Use this for initialization
+	private RaceModel model;
+
 	void Start () {
+		model = RaceModel.getInstance();
+		model.speed.cameraZStart = transform.position.z;
 	}
 
-	// Blend
-	void Update () {
+	// Follow player
+	void FixedUpdate () {
 		Vector3 position = transform.position;
-		position.x = SteeringModel.cameraX;
+		position.x = model.steering.cameraX;
+		position.z = model.speed.cameraZ;
 		transform.position = position;
 	}
 }

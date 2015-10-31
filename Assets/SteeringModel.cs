@@ -1,12 +1,12 @@
 using UnityEngine;  // Mathf;
 
 public class SteeringModel {
-	public static float cameraX = 0.0f;
-	public static float cameraXMultiplier = 0.75f;
 	public static float laneStep = 1.0f;
 	public static float laneLeft = -1.0f;
 	public static float laneRight = 1.0f;
 
+	public float cameraX = 0.0f;
+	public float cameraXMultiplier = 0.75f;
 	public bool isChanging = false;
 	public bool isInputLeft = false;
 	public bool isInputRight = false;
@@ -25,7 +25,7 @@ public class SteeringModel {
 	/**
 	 * @param	isUpdateCameraX		Blend to follow position by setting static variable cameraX.
 	 */
-	public float Update (float deltaTime, bool isUpdateCameraX) {
+	public float Update (float deltaTime) {
 		if (isInputLeft && isInputRight) {
 		}
 		else if (isInputLeft) {
@@ -49,9 +49,7 @@ public class SteeringModel {
 				isChanging = false;
 			}
 		}
-		if (isUpdateCameraX) {
-			cameraX = x * cameraXMultiplier;
-		}
+		cameraX = x * cameraXMultiplier;
 		return x;
 	}
 }

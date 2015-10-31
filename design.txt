@@ -1,9 +1,9 @@
 FEATURES
 	See road, pink and blue blocks.
-
-TODO
 	Press left/right to steer.  Camera follows player.
 	Accelerate automatically.  See road move by.  
+
+TODO
 	10 other cars move at constant acceleration curve.
 	Cross finish line:  Review position.
 	Publish finegamedesign.com/road-racer
@@ -41,6 +41,7 @@ TODO
 	See scenery.
 	See building facade.
 	Curve terrain, like in Subway Surfers.
+	These Controllers are Unity-specific.  Maybe call them Views.
 	Explore coroutine.  http://answers.unity3d.com/questions/573234/moving-an-object-with-one-key-press.html
 
 REFERENCE GAMES
@@ -63,3 +64,21 @@ NAME BANK
 	Autobahn Race
 	Freeway Race
 	Streets of San Francisco
+
+JOURNAL
+
+Sat 10/31/2015 
+13:56
+
+RoadController when segment fully behind camera moves to other end.
+	Each Road.
+	One controller.
+Array road segment quads.  Sort by Z.  While behind camera, recycle forward.
+
+
+Sat 10/31/2015 
+14:55
+
+Duplicate a car prefab.
+Wire it to a model.
+

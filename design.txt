@@ -3,8 +3,9 @@ TODO
 	See a car.
 	Press left/right to steer.
 	Accelerate.
-	Cross finish line:  Review position.
 	10 other cars move at constant acceleration curve.
+	Cross finish line:  Review position.
+	Publish finegamedesign.com/road-racer
 	Tuned so number of collisions determines final position.
 	Start screen.  Read goal and instruction.  Press right to start.
 	Finish race.  Read position.  1st to 10th.
@@ -20,6 +21,9 @@ TODO
 	Shuffle track hills.
 	See track mesh curve left and right.
 	Adapt acceleration.
+	Rhythm Racer: Intercept acceleration to intercept next car on the beat of a song.
+	Change lane:  Hear note.
+	Pass car:  Hear note.
 	Jitter acceleration of other cars, yet arrive on schedule.
 	See sky clouds parallax around curves.
 	First race:  10 cars.
@@ -32,6 +36,7 @@ TODO
 	Read score by time.
 	See scenery.
 	See building facade.
+	Curve terrain, like in Subway Surfers.
 
 REFERENCE GAMES
 	Subway Surfers

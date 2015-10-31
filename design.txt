@@ -7,17 +7,27 @@ TODO
 	10 other cars move at constant acceleration curve.
 	Tuned so number of collisions determines final position.
 	Start screen.  Read goal and instruction.  Press right to start.
+	Finish race.  Read position.  1st to 10th.
 	After race.  Restart.
 	Collide.  Slow down.  Reaccelerate.
 	Set length of race:  See finish line.
 	See finishing position on each car.
 	Hear collision sound.
+	Win race.  Next race with more traffic that drive faster:  20, 30, 40.
+	Interpolate number of drivers based on accuracy.
+	Fog.
 	See track hills.
 	Shuffle track hills.
 	See track mesh curve left and right.
-	Win race.  Next race with more traffic that drives faster.
+	Adapt acceleration.
+	Jitter acceleration of other cars, yet arrive on schedule.
+	See sky clouds parallax around curves.
 	First race:  10 cars.
-	Win race.  Upgrade car.
+	Win race.  Upgrade car.  
+	Car screen:  Show all the cars in order of average speed.
+	During race see the cars in upgrade order.
+	Another car switches lane sometimes.
+	Street.  Sometimes cross traffic, other cars going through on interval.  Time which lane will be clear.
 	Read score by average speed.
 	Read score by time.
 	See scenery.
@@ -31,6 +41,7 @@ REFERENCE GAMES
 	Pole Position
 
 NAME BANK
+	Road Racer
 	Lane Switcher
 	Auto Race
 	Tiny Race

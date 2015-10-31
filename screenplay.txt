@@ -4,7 +4,7 @@ Jennifer Russ sits in front of a computer.
 
 She clicks a link to:
 
-	http://finegamedesign.com/lane-switcher
+	http://finegamedesign.com/road-racer
 
 A page opens with a Unity window in portrait aspect ratio (2:3).
 
@@ -14,10 +14,8 @@ START SCREEN
 
 Road with THREE LANES.  Alternating lane marker and empty texture.
 
-99 blue race cars.  A blue number on the back of each one in a white circle.
-
 		BILLBOARD
-	LANE SWITCHER
+	ROAD RACER
 
 	Dodge cars to win the race.
 
@@ -25,12 +23,41 @@ Road with THREE LANES.  Alternating lane marker and empty texture.
 
 	Press RIGHT to start the race.
 
-At bottom of screen in left lane is a pink race car.  Number 100 on the back in dark purple.
+At bottom of screen in left lane is a pink race car.  Number 10th on the back in dark purple.
 
 Jennifer presses LEFT.  Nothing happens.
 
 Jennifer presses RIGHT.  The pink car moves into the center lane and accelerates.
 
+9 cute blue race cars, each staggered in a shuffled sequence of lanes, like:  left, left, right, center, right, center, center, left, right.  A blue number on the back of each one in a white circle.
+
 The other cars also accelerate.
 
+The numbers on the cars are in descending order from nearest to farthest.  The nearest is 9th.  The next is 8th, and so on until 1.
 
+Road fades into a light blue fog in the distance.
+
+Jennifer passes 9th car.  The number on the back of the pink car reads 9th.
+
+Jennifer collides with 8th car.  The pink car decelerates.  To avoid passing through the pink car, 9th car steers in between lanes and passes.  The number on pink car changes from 9th to 10th.  After the 9th gets clearly ahead, it resumes its lane position, which happened to be in the same lane as the pink car.
+
+The cars stay in the original lanes.
+
+A cute pink car accelerates.  Jennifer continues to pass 8th.  Number on pink car changes to 8th.  
+
+She passes the 1st car.
+
+Finish line with checkered overhang.
+
+Billboard lowers.
+
+			BILLBOARD
+	You finished in 1st place!
+
+	Press RIGHT to start the next race.
+
+Jennifer presses RIGHT.
+
+Return to scene "Start screen", with the following differences:
+
+More cars.  The number of cars depends on the finishing place.  A longer road.  The cars still have the same density.  The cars accelerate faster.  The player's car accelerates faster.  

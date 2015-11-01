@@ -3,10 +3,10 @@ FEATURES
 	Press left/right to steer.  Camera follows player.
 	Accelerate automatically.  See road move by.  
 	10 other cars move at constant acceleration curve.
+	Smooth frame rate by update, simple rendering, no vsync.
 
 TODO
-	Smooth frame rate.
-		Profiler hotspot:  MeshUpdate.prepare
+	Log interval since last intercept.
 	Cross finish line:  Review position.
 	Publish finegamedesign.com/road-racer
 	Tuned so number of collisions determines final position.

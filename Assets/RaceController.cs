@@ -8,6 +8,7 @@ public class RaceController : MonoBehaviour {
 	private GameObject playerCamera;
 	public GameObject[] competitors;
 	public bool isVerbose;
+	public int playerRank;
 
 	public void Start () {
 		model = RaceModel.getInstance();
@@ -77,6 +78,7 @@ public class RaceController : MonoBehaviour {
 	public void Update () {
 		UpdateInput(model.steering);
 		model.Update(Time.deltaTime);
+		playerRank = model.playerRank;
 		SetCompetitorPosition(model.competitors);
 		SetPosition(player.transform, model.steering.x, model.speed.z);
 		SetPosition(playerCamera.transform, model.steering.cameraX, model.speed.cameraZ);

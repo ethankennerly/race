@@ -18,6 +18,7 @@ public class RaceModel {
 					// 0;
 	public float[] lanes;
 	public int playerRank;
+	public string playerRankText;
 
 	private float time;
 	private float passInterval;
@@ -40,8 +41,31 @@ public class RaceModel {
 			lanes[c] = Mathf.Floor(Random.value * 3.0f) - 1.0f;
 		}
 		playerRank = competitorCount + 1;
+		playerRankText = formatPlayerRankText(playerRank);
 		time = 0;
 		passInterval = 0;
+	}
+
+	/**
+	 * For another language, format could be extended and elements translated.
+	 * https://msdn.microsoft.com/en-us/library/system.string.format(v=vs.110).aspx
+	 */
+	public string formatPlayerRankText(int rank) {
+		string cardinal;
+		int lastDigit = rank % 10;
+		if (1 == lastDigit) {
+			cardinal = "st";
+		}
+		else if (2 == lastDigit) {
+			cardinal = "nd";
+		}
+		else if (3 == lastDigit) {
+			cardinal = "rd";
+		}
+		else {
+			cardinal = "th";
+		}
+		return string.Format("{0}{1}\nplace", rank, cardinal);
 	}
 
 	/**
@@ -69,6 +93,9 @@ public class RaceModel {
 				if (rank <= competitors.Length)
 					competitor = competitors[rank - 1];
 			}
+		}
+		if (rank != playerRank) {
+			playerRankText = formatPlayerRankText(rank);
 		}
 		return rank;
 	}

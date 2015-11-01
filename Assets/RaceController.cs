@@ -12,6 +12,7 @@ public class RaceController : MonoBehaviour {
 
 	private RaceModel model;
 	private GameObject finish;
+	private TextMesh finishText;
 	private GameObject player;
 	private GameObject playerCamera;
 	private GameObject[] competitors;
@@ -24,6 +25,7 @@ public class RaceController : MonoBehaviour {
 		competitors = ConstructCompetitors(model, competitorPrefab);
 		finish = GameObject.Find("Finish");
 		finish.transform.position += Vector3.forward * model.finishZ;
+		finishText = (TextMesh) GameObject.Find("FinishText").GetComponent<TextMesh>();
 	}
 
 	public GameObject[] ConstructCompetitors (RaceModel model, GameObject competitorPrefab) {
@@ -76,6 +78,10 @@ public class RaceController : MonoBehaviour {
 		}
 	}
 
+	private void SetRankText(TextMesh mesh) {
+		mesh.text = model.playerRankText;
+	}
+
 	/**
 	 * Controller explicitly orders updates:  All models then all views.
 	 * Was updating on each prefab's component script.  Also tried fixed update.
@@ -89,6 +95,7 @@ public class RaceController : MonoBehaviour {
 		playerRank = model.playerRank;
 		playerSpeed = model.speed.speed;
 		SetCompetitorPosition(model.competitors);
+		SetRankText(finishText);
 		SetPosition(player.transform, model.steering.x, model.speed.z);
 		SetPosition(playerCamera.transform, model.steering.cameraX, model.speed.cameraZ);
 	}

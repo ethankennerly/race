@@ -10,6 +10,7 @@ public class SteeringModel {
 	public bool isChanging = false;
 	public bool isInputLeft = false;
 	public bool isInputRight = false;
+	public bool isVerbose = false;
 	private bool wasInputLeft = false;
 	private bool wasInputRight = false;
 	public float speed = 5.0f;
@@ -31,12 +32,12 @@ public class SteeringModel {
 		if (isInputLeft && isInputRight) {
 		}
 		else if (isInputLeft && !wasInputLeft) {
-			Debug.Log("SteeringModel.update: Left");
+			if (isVerbose) Debug.Log("SteeringModel.update: Left");
 			laneTarget -= laneStep;
 			isChanging = true;
 		}
 		else if (isInputRight && !wasInputRight) {
-			Debug.Log("SteeringModel.update: Right");
+			if (isVerbose) Debug.Log("SteeringModel.update: Right");
 			laneTarget += laneStep;
 			isChanging = true;
 		}

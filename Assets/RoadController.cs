@@ -29,7 +29,7 @@ public class RoadController : MonoBehaviour {
 	/**
 	 * Array road segment quads.  While behind camera, recycle forward.
 	 */
-	void FixedUpdate () {
+	void Update () {
 		float offscreen = model.speed.cameraZ;
 		for (index = 0; index < count; index++) {
 			childTransform = transforms[index];

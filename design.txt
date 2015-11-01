@@ -4,9 +4,10 @@ FEATURES
 	Accelerate automatically.  See road move by.  
 	10 other cars move at constant acceleration curve.
 	Smooth frame rate by update, simple rendering, no vsync.
+	Log interval since last intercept.
+	See checker line at finish.
 
 TODO
-	Log interval since last intercept.
 	Cross finish line:  Review position.
 	Publish finegamedesign.com/road-racer
 	Tuned so number of collisions determines final position.

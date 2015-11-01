@@ -7,6 +7,7 @@ public class RaceController : MonoBehaviour {
 	public float playerSpeed;
 
 	private RaceModel model;
+	private GameObject finish;
 	private GameObject player;
 	private GameObject playerCamera;
 	private GameObject[] competitors;
@@ -17,6 +18,8 @@ public class RaceController : MonoBehaviour {
 		playerCamera = GameObject.Find("Camera");
 		model.speed.cameraZStart = playerCamera.transform.position.z;
 		competitors = ConstructCompetitors(model, competitorPrefab);
+		finish = GameObject.Find("Finish");
+		finish.transform.position += Vector3.forward * 240.0f;
 	}
 
 	public GameObject[] ConstructCompetitors (RaceModel model, GameObject competitorPrefab) {

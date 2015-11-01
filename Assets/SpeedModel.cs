@@ -3,6 +3,18 @@
  * 
  */
 public class SpeedModel {
+
+	public static float finishZ;
+
+	public static void setFinishZ(bool isShort) {
+		if (isShort) {
+			SpeedModel.finishZ = 20.0f;
+		}
+		else {
+			SpeedModel.finishZ = 240.0f;
+		}
+	}
+
 	public float cameraZ = 0.0f;
 	public float cameraZStart = 0.0f;
 	public float idealSpeed = 	
@@ -23,6 +35,7 @@ public class SpeedModel {
 						// 0.05f;
 						// 0.1f;
 						// 0.5f;
+
 	public static SpeedModel[] constructCompetitors(int competitorCount)
 	{
 		SpeedModel[] competitors = new SpeedModel[competitorCount];
@@ -47,10 +60,15 @@ public class SpeedModel {
 		return competitors;
 	}
 
-	public void Start () {
-	}
-	
+	/**
+	 * After finish, slow down and stop in front of result billboard.
+	 */
 	public float Update (float deltaTime) {
+		if (SpeedModel.finishZ < z) {
+			idealSpeed = 0.0f;
+			idealConvergeRate = 10.0f;
+			convergeRate = 2.0f;
+		}
 		targetSpeed += (idealSpeed - targetSpeed) * deltaTime * idealConvergeRate;
 		speed += (targetSpeed - speed) * deltaTime * convergeRate;
 		z += speed * deltaTime;

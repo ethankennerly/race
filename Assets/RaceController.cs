@@ -7,6 +7,7 @@ using UnityEngine;
 public class RaceController : MonoBehaviour {
 	public GameObject competitorPrefab;
 	public bool isVerbose;
+	public bool isShort;
 	public int playerRank;
 	public float playerSpeed;
 
@@ -18,13 +19,14 @@ public class RaceController : MonoBehaviour {
 	private GameObject[] competitors;
 
 	public void Start () {
+		SpeedModel.setFinishZ(isShort);
 		model = RaceModel.getInstance();
 		player = GameObject.Find("Player");
 		playerCamera = GameObject.Find("Camera");
 		model.speed.cameraZStart = playerCamera.transform.position.z;
 		competitors = ConstructCompetitors(model, competitorPrefab);
 		finish = GameObject.Find("Finish");
-		finish.transform.position += Vector3.forward * model.finishZ;
+		finish.transform.position += Vector3.forward * SpeedModel.finishZ;
 		finishText = (TextMesh) GameObject.Find("FinishText").GetComponent<TextMesh>();
 	}
 

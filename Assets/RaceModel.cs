@@ -6,9 +6,6 @@ public class RaceModel {
 	public SpeedModel speed = new SpeedModel();
 	public SteeringModel steering = new SteeringModel();
 	public SpeedModel[] competitors;
-	public float finishZ = 
-				20.0f;
-				// 240.0f;
 	public int competitorCount = 	// 19;
 					49;
 					// 100;

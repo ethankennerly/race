@@ -6,9 +6,11 @@ FEATURES
 	Smooth frame rate by update, simple rendering, no vsync.
 	Log interval since last intercept.
 	See checker line at finish.
+	After finish, read 1st place.
 
 TODO
-	Cross finish line:  Review position.
+	Cross finish line:  Review rank.
+	See rank on back of each car.
 	Publish finegamedesign.com/road-racer
 	Tuned so number of collisions determines final position.
 	Start screen.  Read goal and instruction.  Press right to start.

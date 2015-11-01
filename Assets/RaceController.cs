@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/**
+ * Read which place at end.
+ * http://wiki.unity3d.com/index.php?title=3DText
+ */
 public class RaceController : MonoBehaviour {
 	public GameObject competitorPrefab;
 	public bool isVerbose;
@@ -19,7 +23,7 @@ public class RaceController : MonoBehaviour {
 		model.speed.cameraZStart = playerCamera.transform.position.z;
 		competitors = ConstructCompetitors(model, competitorPrefab);
 		finish = GameObject.Find("Finish");
-		finish.transform.position += Vector3.forward * 240.0f;
+		finish.transform.position += Vector3.forward * model.finishZ;
 	}
 
 	public GameObject[] ConstructCompetitors (RaceModel model, GameObject competitorPrefab) {

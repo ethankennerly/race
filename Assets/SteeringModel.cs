@@ -10,6 +10,8 @@ public class SteeringModel {
 	public bool isChanging = false;
 	public bool isInputLeft = false;
 	public bool isInputRight = false;
+	private bool wasInputLeft = false;
+	private bool wasInputRight = false;
 	public float speed = 5.0f;
 	public float x = 0.0f;
 
@@ -21,17 +23,20 @@ public class SteeringModel {
 	public void Start () {
 	
 	}
-	
+
+	/**
+	 * If was input left or right then ignore input this frame.  Perhaps multiple updates are being called per frame, since it is a fixed update.  Test case:  2015-10-31 In left lane.  Press right.  Expect move one lane.  Sometimes move two lanes.
+	 */
 	public float Update (float deltaTime) {
 		if (isInputLeft && isInputRight) {
 		}
-		else if (isInputLeft) {
-			// Debug.Log("SteeringModel.update: Left");
+		else if (isInputLeft && !wasInputLeft) {
+			Debug.Log("SteeringModel.update: Left");
 			laneTarget -= laneStep;
 			isChanging = true;
 		}
-		else if (isInputRight) {
-			// Debug.Log("SteeringModel.update: Right");
+		else if (isInputRight && !wasInputRight) {
+			Debug.Log("SteeringModel.update: Right");
 			laneTarget += laneStep;
 			isChanging = true;
 		}
@@ -47,6 +52,8 @@ public class SteeringModel {
 			}
 		}
 		cameraX = x * cameraXMultiplier;
+		wasInputLeft = isInputLeft;
+		wasInputRight = isInputRight;
 		return x;
 	}
 }

@@ -10,7 +10,7 @@ public class SpeedModel {
 	public float targetSpeed = 5.0f;
 	public float z = 0.0f;
 
-	private float convergeRate = 0.25f;
+	private float convergeRate = 0.125f;
 	private float idealConvergeRate = 0.005f;
 						// 0.0025f;
 
@@ -20,6 +20,7 @@ public class SpeedModel {
 	public float Update (float deltaTime) {
 		targetSpeed += (idealSpeed - targetSpeed) * deltaTime * idealConvergeRate;
 		speed += (targetSpeed - speed) * deltaTime * convergeRate;
+		speed = 5.0f;
 		z += speed * deltaTime;
 		cameraZ = z + cameraZStart;
 		return z;

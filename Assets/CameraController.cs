@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	// Follow player
-	void FixedUpdate () {
+	void Update () {
 		Vector3 position = transform.position;
 		position.x = model.steering.cameraX;
 		position.z = model.speed.cameraZ;

@@ -23,6 +23,9 @@ public class VehicleController : MonoBehaviour {
 	 * Array road segment quads.  While behind camera, recycle forward.
 	 */
 	void FixedUpdate () {
+		if (null == model.competitors) {
+			return;
+		}
 		for (int c = 0; c < model.competitors.Length; c++) {
 			SpeedModel competitor = model.competitors[c];
 			GameObject gameObject = competitors[c];

@@ -6,6 +6,9 @@ FEATURES
 
 TODO
 	Smooth frame rate.
+		Profiler hotspot:  MeshUpdate.prepare
+	Smooth camera follow.
+		http://answers.unity3d.com/questions/46107/in-what-order-are-all-the-update-functions-called.html
 	Cross finish line:  Review position.
 	Publish finegamedesign.com/road-racer
 	Tuned so number of collisions determines final position.

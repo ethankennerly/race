@@ -6,7 +6,8 @@ public class RaceModel {
 	public SpeedModel speed = new SpeedModel();
 	public SteeringModel steering = new SteeringModel();
 	public SpeedModel[] competitors;
-	public int competitorCount = 	19;
+	public int competitorCount = 	// 19;
+					49;
 					// 100;
 					// 10;  
 					// 1;
@@ -30,19 +31,9 @@ public class RaceModel {
 	 * Sort competitors from slowest to fastest.
 	 */
 	public void Start () {
-		competitors = new SpeedModel[competitorCount];
+		competitors = SpeedModel.constructCompetitors(competitorCount);
 		lanes = new float[competitorCount];
-		float idealPerCompetitor = 20.0f;  // 100.0f;
-		idealPerCompetitor /= ((float) competitorCount);
-		float targetPerCompetitor = 10.0f;
-		targetPerCompetitor /= ((float) competitorCount);
 		for (int c = 0; c < competitors.Length; c++) {
-			competitors[c] = new SpeedModel();
-			SpeedModel competitor = competitors[c];
-			float cf = (float) competitors.Length - c - 1;
-			competitor.idealSpeed = 5.0f + idealPerCompetitor * cf;
-			competitor.targetSpeed = 5.0f + targetPerCompetitor * cf;
-			competitor.z = 5.0f + cf;
 			lanes[c] = Mathf.Floor(Random.value * 3.0f) - 1.0f;
 		}
 		playerRank = competitorCount + 1;

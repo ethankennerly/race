@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class RaceController : MonoBehaviour {
 	public GameObject competitorPrefab;
+	public bool isVerbose;
+	public int playerRank;
+	public float playerSpeed;
 
 	private RaceModel model;
 	private GameObject player;
 	private GameObject playerCamera;
-	public GameObject[] competitors;
-	public bool isVerbose;
-	public int playerRank;
+	private GameObject[] competitors;
 
 	public void Start () {
 		model = RaceModel.getInstance();
@@ -79,6 +80,7 @@ public class RaceController : MonoBehaviour {
 		UpdateInput(model.steering);
 		model.Update(Time.deltaTime);
 		playerRank = model.playerRank;
+		playerSpeed = model.speed.speed;
 		SetCompetitorPosition(model.competitors);
 		SetPosition(player.transform, model.steering.x, model.speed.z);
 		SetPosition(playerCamera.transform, model.steering.cameraX, model.speed.cameraZ);

@@ -97,6 +97,42 @@ public class RaceModel {
 		return rank;
 	}
 
+	private float collisionRadius = 0.4f;
+
+	/**
+	 * @return	If near and first is going faster.
+	 */
+	private bool IsColliding (float x0, float z0, float x1, float z1, float speed0, float speed1) {
+		return Mathf.Abs(z0 - z1) < collisionRadius 
+			&& Mathf.Abs(x0 - x1) < collisionRadius
+			&& speed1 < speed0;
+	}
+
+	/**
+	 * @param	speed	If going faster than competitor and in lane and near, stop.
+	 * @param	rank	Only checks next competitor ahead and behind.  Expects no more than one competitor passed per frame.
+	 * @param	competitors	Ignore if going faster.
+	 */
+	private bool UpdateCollision (SpeedModel speed, float x0, SpeedModel[] competitors, float[] x1s, int rank) {
+		bool isCollision = false;
+		if (null != competitors) {
+			SpeedModel competitor;
+			int index = rank - 2;
+			if (0 <= index) {
+				competitor = competitors[index];
+				isCollision = IsColliding(x0, speed.z, x1s[index], competitor.z, speed.speed, competitor.speed);
+			}
+			if (!isCollision) {
+				index = rank - 1;
+				if (index < competitors.Length) {
+					competitor = competitors[index];
+					isCollision = IsColliding(x0, speed.z, x1s[index], competitor.z, speed.speed, competitor.speed);
+				}
+			}
+		}
+		return isCollision;
+	}
+
 	public void Update (float deltaTime) {
 		time += deltaTime;
 		steering.Update(deltaTime);
@@ -104,6 +140,9 @@ public class RaceModel {
 		for (int c = 0; c < competitors.Length; c++) {
 			SpeedModel competitor = competitors[c];
 			competitor.Update(deltaTime);
+		}
+		if (UpdateCollision(speed, steering.x, competitors, lanes, playerRank)) {
+			speed.OnCollision();
 		}
 		playerRank = UpdatePlayerRank(playerRank, speed.z, competitors);
 	}

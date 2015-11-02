@@ -75,4 +75,8 @@ public class SpeedModel {
 		cameraZ = z + cameraZStart;
 		return z;
 	}
+
+	public void OnCollision() {
+		speed = 0.0f;
+	}
 }

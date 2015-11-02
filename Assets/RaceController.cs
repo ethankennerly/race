@@ -19,7 +19,7 @@ public class RaceController : MonoBehaviour {
 	private GameObject[] competitors;
 
 	public void Start () {
-		SpeedModel.setFinishZ(isShort);
+		SpeedModel.setIsShort(isShort);
 		model = RaceModel.getInstance();
 		player = GameObject.Find("Player");
 		playerCamera = GameObject.Find("Camera");

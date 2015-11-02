@@ -32,6 +32,7 @@ public class RaceModel {
 	 * Sort competitors from slowest to fastest.
 	 */
 	public void Start () {
+		if (SpeedModel.isShort) competitorCount = 9;
 		competitors = SpeedModel.constructCompetitors(competitorCount);
 		lanes = new float[competitorCount];
 		for (int c = 0; c < competitors.Length; c++) {
@@ -48,19 +49,18 @@ public class RaceModel {
 	 * https://msdn.microsoft.com/en-us/library/system.string.format(v=vs.110).aspx
 	 */
 	public string formatPlayerRankText(int rank) {
-		string cardinal;
-		int lastDigit = rank % 10;
-		if (1 == lastDigit) {
-			cardinal = "st";
-		}
-		else if (2 == lastDigit) {
-			cardinal = "nd";
-		}
-		else if (3 == lastDigit) {
-			cardinal = "rd";
-		}
-		else {
-			cardinal = "th";
+		string cardinal = "th";
+		if (rank < 10 || 20 < rank) {
+			int lastDigit = rank % 10;
+			if (1 == lastDigit) {
+				cardinal = "st";
+			}
+			else if (2 == lastDigit) {
+				cardinal = "nd";
+			}
+			else if (3 == lastDigit) {
+				cardinal = "rd";
+			}
 		}
 		return string.Format("{0}{1}\nplace", rank, cardinal);
 	}
@@ -113,7 +113,7 @@ public class RaceModel {
 	 * @param	rank	Only checks next competitor ahead and behind.  Expects no more than one competitor passed per frame.
 	 * @param	competitors	Ignore if going faster.
 	 */
-	private bool UpdateCollision (SpeedModel speed, float x0, SpeedModel[] competitors, float[] x1s, int rank) {
+	private bool DetectCollision (SpeedModel speed, float x0, SpeedModel[] competitors, float[] x1s, int rank) {
 		bool isCollision = false;
 		if (null != competitors) {
 			SpeedModel competitor;
@@ -141,9 +141,10 @@ public class RaceModel {
 			SpeedModel competitor = competitors[c];
 			competitor.Update(deltaTime);
 		}
-		if (UpdateCollision(speed, steering.x, competitors, lanes, playerRank)) {
-			speed.OnCollision();
+		bool isColliding = DetectCollision(speed, steering.x, competitors, lanes, playerRank);
+		speed.UpdateCollision(isColliding);
+		if (speed.IsActive()) {
+			playerRank = UpdatePlayerRank(playerRank, speed.z, competitors);
 		}
-		playerRank = UpdatePlayerRank(playerRank, speed.z, competitors);
 	}
 }

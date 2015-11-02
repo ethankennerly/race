@@ -8,13 +8,14 @@ FEATURES
 	See checker line at finish.
 	After finish, read rank.
 	Collide.  Stop.  Reset speed.
+	Stop in front of sign.
 
 TODO
 	Tuned so number of collisions determines final position.
 	Start screen.  Read goal and instruction.  Press right to start.
 	Publish finegamedesign.com/road-racer
+	Others stop either behind or in front, based on rank without overlapping.
 	See rank on back of each car.
-	Stop in front of sign.
 	After race.  Restart.
 	Set length of race:  See finish line.
 	See finishing position on each car.

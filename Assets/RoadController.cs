@@ -16,7 +16,6 @@ public class RoadController : MonoBehaviour {
 	 * http://answers.unity3d.com/questions/594210/get-all-children-gameobjects.html
 	 */
 	void Start () {
-		model = RaceModel.getInstance();
 		count = transform.childCount;
 		transforms = new Transform[count];
 		for (index = 0; index < count; index++) {
@@ -30,6 +29,7 @@ public class RoadController : MonoBehaviour {
 	 * Array road segment quads.  While behind camera, recycle forward.
 	 */
 	void Update () {
+		model = RaceModel.getInstance();
 		float offscreen = model.speed.cameraZ;
 		for (index = 0; index < count; index++) {
 			childTransform = transforms[index];

@@ -1,3 +1,5 @@
+using UnityEngine;  // Mathf
+
 /**
  * Lower ideal speed, raise ideal converge rate, lower competitor speeds.  Test case:  2015-11-01 Expect to intercept 49 competitors interpolated between 1.3 sec and 0.3 seconds, each number going down.  Previously trend was increasing.
  * 
@@ -5,8 +7,11 @@
 public class SpeedModel {
 
 	public static float finishZ;
+	public static bool isShort;
+	public static float postZ = 18.0f;
 
-	public static void setFinishZ(bool isShort) {
+	public static void setIsShort(bool isShort) {
+		SpeedModel.isShort = isShort;
 		if (isShort) {
 			SpeedModel.finishZ = 20.0f;
 		}
@@ -64,10 +69,11 @@ public class SpeedModel {
 	 * After finish, slow down and stop in front of result billboard.
 	 */
 	public float Update (float deltaTime) {
-		if (SpeedModel.finishZ < z) {
-			idealSpeed = 0.0f;
-			idealConvergeRate = 10.0f;
-			convergeRate = 2.0f;
+		if (!IsActive()) {
+			// idealSpeed = 0.0f;
+			idealSpeed = (finishZ + postZ / 2 - z);
+			idealConvergeRate = 100.0f;
+			convergeRate = 100.0f;
 		}
 		targetSpeed += (idealSpeed - targetSpeed) * deltaTime * idealConvergeRate;
 		speed += (targetSpeed - speed) * deltaTime * convergeRate;
@@ -76,7 +82,22 @@ public class SpeedModel {
 		return z;
 	}
 
-	public void OnCollision() {
-		speed = 0.0f;
+	public bool IsActive() {
+		return z < finishZ;
+	}
+
+	private bool isColliding = false;
+
+	/**
+	 * Do not double-count contiguous frames of collision.
+	 */
+	public void UpdateCollision(bool isCollidingNow) {
+		if (isCollidingNow && IsActive() && !isColliding) {
+			speed *= 0.25f;
+			targetSpeed *= 0.95f;
+			idealConvergeRate *= 1.25f;
+			Debug.Log("SpeedModel.UpdateCollision: targetSpeed " + targetSpeed);
+		}
+		isColliding = isCollidingNow && IsActive();
 	}
 }

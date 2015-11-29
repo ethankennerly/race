@@ -9,23 +9,26 @@ FEATURES
 	After finish, read rank.
 	Collide.  Stop.  Reset speed.
 	Stop in front of sign.
+	Tuned so number of collisions determines final position.
+	Publish finegamedesign.com/road-racer
+	Stop at review screen.
+	Start screen.  Read goal and instruction.  Press right to start.
+	Others stop either behind or in front, based on rank without overlapping.  (+Jennifer Russ)
+	Tune.  Test case:  2015-11-01 Jennifer Russ expects different place than 8th.  Rarely got 3rd.
+	After race, press left or right to restart.
+	Fog.
+	Finish 1st.  Next race with more traffic and you drive faster.
+	Set length of race:  See finish line.
+	Hear collision sound.
 
 TODO
-	Tuned so number of collisions determines final position.
-	Start screen.  Read goal and instruction.  Press right to start.
-	Publish finegamedesign.com/road-racer
-	Others stop either behind or in front, based on rank without overlapping.
+	See rank on your car.
 	See rank on back of each car.
-	After race.  Restart.
-	Set length of race:  See finish line.
-	See finishing position on each car.
-	Hear collision sound.
-	Win race.  Next race with more traffic that drive faster:  20, 30, 40.
 	Interpolate number of drivers based on accuracy.
 	Unit test models with tools.  http://www.tallior.com/introduction-unity-test-tools/
-	Fog.
 	See track hills.
 	Shuffle track hills.
+	On collision, see damage.
 	See track mesh curve left and right.
 	Adapt acceleration.
 	Rhythm Racer: Intercept acceleration to intercept next car on the beat of a song.
@@ -70,6 +73,25 @@ NAME BANK
 	Freeway Race
 	Streets of San Francisco
 
+
+
+UNITY GOTCHAS
+
+"""
+To fix it in the Editor, go to Window -> Lighting -> Lightmap Tab -> Disable Continuous Baking -> Press Build to bake the lighting once manually.
+
+Note that if you add more lights or make some changes, you have to bake the lightmap again.
+"""
+http://answers.unity3d.com/questions/919940/applicationloadlevel-changes-lighting-for-some-rea.html
+
+
+"""
+Actually, Lightmapping should work in WebGL. However, realtime GI is not supported - so in your lighting setting, make sure that realtime GI is disabled before you bake.
+"""
+jonas echterhoff, Mar 20, 2015
+http://forum.unity3d.com/threads/baked-lightmap-not-used-in-webgl-builds.310725/
+
+
 JOURNAL
 
 Sat 10/31/2015 
@@ -87,3 +109,14 @@ Sat 10/31/2015
 Duplicate a car prefab.
 Wire it to a model.
 
+Sat 11/28/2015 
+15:25
+
+Sun 11/29/2015 
+08:36
+
+If rank 1:  raise ideal speed.
+More competitors.
+
+Intercept competitors more frequently.
+Yet farthest competitor is a bit faster too.  

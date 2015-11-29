@@ -1,47 +1,29 @@
 using UnityEngine;  // Mathf
 
 public class RaceModel {
-	public static RaceModel instance;
-
-	public SpeedModel speed = new SpeedModel();
 	public SteeringModel steering = new SteeringModel();
-	public SpeedModel[] competitors;
-	public int competitorCount = 	// 19;
-					49;
-					// 100;
-					// 10;  
-					// 1;
-					// 2;
-					// 0;
 	public float[] lanes;
 	public int playerRank;
 	public string playerRankText;
+	public bool isVerbose = false;
 
 	private float time;
 	private float passInterval;
-
-	public static RaceModel getInstance() {
-		if (null == instance) {
-			instance = new RaceModel();
-			instance.Start();
-		}
-		return instance;
-	}
 
 	/**
 	 * Sort competitors from slowest to fastest.
 	 */
 	public void Start () {
-		if (SpeedModel.isShort) competitorCount = 9;
-		competitors = SpeedModel.constructCompetitors(competitorCount);
-		lanes = new float[competitorCount];
-		for (int c = 0; c < competitors.Length; c++) {
+		SpeedModel.Start();
+		lanes = new float[SpeedModel.competitorCount];
+		for (int c = 0; c < SpeedModel.competitors.Length; c++) {
 			lanes[c] = Mathf.Floor(Random.value * 3.0f) - 1.0f;
 		}
-		playerRank = competitorCount + 1;
+		playerRank = SpeedModel.competitorCount + 1;
 		playerRankText = formatPlayerRankText(playerRank);
 		time = 0;
 		passInterval = 0;
+		SpeedModel.isEnabled = false;
 	}
 
 	/**
@@ -62,7 +44,7 @@ public class RaceModel {
 				cardinal = "rd";
 			}
 		}
-		return string.Format("{0}{1}\nplace", rank, cardinal);
+		return string.Format("{0}{1}\nplace!", rank, cardinal);
 	}
 
 	/**
@@ -76,7 +58,7 @@ public class RaceModel {
 			competitor = competitors[rank - 2];
 			while (2 <= rank && competitor.z < playerZ) {
 				passInterval = time - passInterval;
-				Debug.Log("RaceModel.UpdatePlayerRank: " + rank + " interval " + passInterval + " playerZ " + playerZ + " competitor.z " + competitor.z);
+				if (isVerbose) Debug.Log("RaceModel.UpdatePlayerRank: " + rank + " interval " + passInterval + " playerZ " + playerZ + " competitor.z " + competitor.z);
 				passInterval = time;
 				rank--;
 				if (2 <= rank) 
@@ -93,6 +75,7 @@ public class RaceModel {
 		}
 		if (rank != playerRank) {
 			playerRankText = formatPlayerRankText(rank);
+			SpeedModel.player.calculatePostZ((float) rank);
 		}
 		return rank;
 	}
@@ -136,15 +119,16 @@ public class RaceModel {
 	public void Update (float deltaTime) {
 		time += deltaTime;
 		steering.Update(deltaTime);
-		speed.Update(deltaTime);
-		for (int c = 0; c < competitors.Length; c++) {
-			SpeedModel competitor = competitors[c];
-			competitor.Update(deltaTime);
+		if (steering.isInputRight || steering.isInputLeft) {
+			if (SpeedModel.isRestarting()) {
+				SpeedModel.setNextLevel(playerRank);
+			}
 		}
-		bool isColliding = DetectCollision(speed, steering.x, competitors, lanes, playerRank);
-		speed.UpdateCollision(isColliding);
-		if (speed.IsActive()) {
-			playerRank = UpdatePlayerRank(playerRank, speed.z, competitors);
+		SpeedModel.Updates(deltaTime);
+		bool isColliding = DetectCollision(SpeedModel.player, steering.x, SpeedModel.competitors, lanes, playerRank);
+		SpeedModel.player.UpdateCollision(isColliding);
+		if (SpeedModel.player.IsActive()) {
+			playerRank = UpdatePlayerRank(playerRank, SpeedModel.player.z, SpeedModel.competitors);
 		}
 	}
 }

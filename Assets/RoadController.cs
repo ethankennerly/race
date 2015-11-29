@@ -3,8 +3,8 @@ using System.Collections;
 
 public class RoadController : MonoBehaviour {
 
+	public RaceModel model;
 	private Transform childTransform;
-	private RaceModel model;
 	private Transform[] transforms;
 	private int index;
 	private int count;
@@ -29,8 +29,7 @@ public class RoadController : MonoBehaviour {
 	 * Array road segment quads.  While behind camera, recycle forward.
 	 */
 	void Update () {
-		model = RaceModel.getInstance();
-		float offscreen = model.speed.cameraZ;
+		float offscreen = SpeedModel.player.cameraZ;
 		for (index = 0; index < count; index++) {
 			childTransform = transforms[index];
 			if (childTransform.position.z < offscreen) {

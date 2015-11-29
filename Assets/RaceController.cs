@@ -11,33 +11,45 @@ public class RaceController : MonoBehaviour {
 	public int playerRank;
 	public float playerSpeed;
 
-	private RaceModel model;
+	private RaceModel model = new RaceModel();
 	private GameObject finish;
 	private TextMesh finishText;
+	private GameObject restart;
 	private GameObject player;
+	private RoadController road;
 	private GameObject playerCamera;
 	private GameObject[] competitors;
 
 	public void Start () {
-		SpeedModel.setIsShort(isShort);
-		model = RaceModel.getInstance();
 		player = GameObject.Find("Player");
 		playerCamera = GameObject.Find("Camera");
-		model.speed.cameraZStart = playerCamera.transform.position.z;
-		competitors = ConstructCompetitors(model, competitorPrefab);
-		finish = GameObject.Find("Finish");
-		finish.transform.position += Vector3.forward * SpeedModel.finishZ;
+		SpeedModel.player.setup(player.transform.position.z, playerCamera.transform.position.z);
+		SpeedModel.setIsShort(isShort);
+		model.Start();
+		road = GameObject.Find("Road").GetComponent<RoadController>();
+		road.model = model;
+		ConstructCompetitors(model, competitorPrefab);
+		finish = GameObject.Find("Finish"); 
+		finish.transform.position = Vector3.forward * SpeedModel.finishZ;
 		finishText = (TextMesh) GameObject.Find("FinishText").GetComponent<TextMesh>();
+		restart = GameObject.Find("RestartText");
+		restart.SetActive(SpeedModel.isRestartEnabled());
 	}
 
 	public GameObject[] ConstructCompetitors (RaceModel model, GameObject competitorPrefab) {
-		GameObject[] competitors = new GameObject[model.competitorCount];
-		for (int c = 0; c < model.competitorCount; c++) {
-			Vector3 position = new Vector3(model.lanes[c], 0.25f, model.competitors[c].z);
+		int c;
+		if (null != competitors) {
+			for (c = 0; c < competitors.Length; c++) {
+				Destroy(competitors[c]);
+			}
+		}
+		competitors = new GameObject[SpeedModel.competitorCount];
+		for (c = 0; c < SpeedModel.competitorCount; c++) {
+			Vector3 position = new Vector3(model.lanes[c], 0.25f, SpeedModel.competitors[c].z);
 			competitors[c] = (GameObject) Instantiate(
 				competitorPrefab, position, Quaternion.identity);
 			competitors[c].SetActive(true);
-			// Debug.Log("RaceController.Construct: " + c + " position " + competitors[c].transform.position);
+			if (isVerbose) Debug.Log("RaceController.Construct: " + c + " position " + competitors[c].transform.position);
 		}
 		return competitors;
 	}
@@ -95,10 +107,16 @@ public class RaceController : MonoBehaviour {
 		UpdateInput(model.steering);
 		model.Update(Time.deltaTime);
 		playerRank = model.playerRank;
-		playerSpeed = model.speed.speed;
-		SetCompetitorPosition(model.competitors);
+		playerSpeed = SpeedModel.player.speed;
+		SetCompetitorPosition(SpeedModel.competitors);
 		SetRankText(finishText);
-		SetPosition(player.transform, model.steering.x, model.speed.z);
-		SetPosition(playerCamera.transform, model.steering.cameraX, model.speed.cameraZ);
+		SetPosition(player.transform, model.steering.x, SpeedModel.player.z);
+		SetPosition(playerCamera.transform, model.steering.cameraX, SpeedModel.player.cameraZ);
+		restart.SetActive(SpeedModel.isRestartEnabled());
+		if (SpeedModel.isRestart) {
+			SpeedModel.isRestart = false;
+			if (isVerbose) Debug.Log("RaceModel.Update: Restart");
+			Application.LoadLevel(Application.loadedLevel);
+		}
 	}
 }
